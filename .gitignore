@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 .vite/
 .env*
+!.env.production
 .sites-runtime/
 .venv/
 dist/

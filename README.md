@@ -5,9 +5,9 @@ An evidence-led, capacity-limited cohort allocation contract and public app for 
 ## Status
 
 - Contract: `contracts/OpenSeat.py`
-- Network target: Studio development preview, chain ID **61997** (GenLayerJS `2.0.0-rc.1`). This is a temporary test environment.
-- Contract address: **pending verified deployment**. The app deliberately shows no live data until `VITE_CONTRACT_ADDRESS` is set.
-- Public website: https://openseat-haris4587.itzanza2.chatgpt.site (published, contract connection pending). Source revisions and pending network evidence are in `docs/verification.md`.
+- Network target: Studionet, chain ID **61999** (GenLayerJS `1.1.8`).
+- Contract address: [`0xf70eAf992565Aa334526E82Da06f6d99E4Ca3366`](https://explorer-studio.genlayer.com/address/0xf70eAf992565Aa334526E82Da06f6d99E4Ca3366); finalized `get_config` verified; new application transaction submitted.
+- Public website: https://openseat-haris4587.itzanza2.chatgpt.site (publishing corrected contract address). Source revisions and pending network evidence are in `docs/verification.md`.
 
 ## Run
 
@@ -21,11 +21,11 @@ python -m venv .venv
 .venv/bin/python -m pytest tests -q
 ```
 
-For a deployed contract, set `VITE_CONTRACT_ADDRESS=0x...` when building and serve `dist/`. The browser needs an EIP-1193 wallet on Studio devnet. The app uses `LATEST_FINAL` reads, estimates fees for each write, retains the submitted transaction hash through finalization, and checks both status and execution outcome. `Connect wallet` does not submit a transaction.
+For a deployed contract, set `VITE_CONTRACT_ADDRESS=0x...` when building and serve `dist/`. The browser needs an EIP-1193 wallet on Studionet. The app uses `LATEST_FINAL` reads, retains the submitted transaction hash through finalization, and checks both status and execution outcome. `Connect wallet` does not submit a transaction.
 
 ## Round creation and use
 
-1. In [Studio dev](https://studio-dev.genlayer.com/), load `contracts/OpenSeat.py`; deploy with `title`, `rules`, Unix-second `deadline`, Unix-second `review_end`, and `seats`. Constructor bounds: deadline 10 minutes–90 days after deployment, review end 10 minutes–14 days after deadline, 1–32 seats. The organizer wallet and SHA-256 of the exact rule text are committed on deployment. Rules cannot be edited.
+1. In [Studio](https://studio.genlayer.com/), load `contracts/OpenSeat.py`; deploy with `title`, `rules`, Unix-second `deadline`, Unix-second `review_end`, and `seats`. Constructor bounds: deadline 10 minutes–90 days after deployment, review end 10 minutes–14 days after deadline, 1–32 seats. The organizer wallet and SHA-256 of the exact rule text are committed on deployment. Rules cannot be edited.
 2. An applicant produces a UTF-8 plain-text evidence file in a public GitHub repository, commits it, copies its `raw.githubusercontent.com/owner/repo/<full-40-character-commit>/path` URL, and uses the app to fetch/hash its exact bytes. Evidence must fit 16 KiB. Submit `apply(url, sha256)` before the deadline. One entry per wallet; the organizer cannot apply. At most 64 wallets.
 3. From deadline until review end, **any wallet** can call `review(wallet)` once for each application. The contract re-fetches and hashes the evidence, and GenLayer validators independently judge the written rules. A changed, oversized or unavailable page fails closed. The applicant and organizer may each call `challenge(wallet)` once after an initial review; no other wallet may challenge, and neither side supplies an overriding verdict. Each recheck appends a new decision; the old one remains visible.
 4. At least 120 seconds after review end, any wallet calls `finalize()`. The contract fetches the *fixed* later beacon round, validates its round and SHA-256(signature) relation, requires exact consensus on randomness, and ranks only eligible applicants by `SHA256(randomness_bytes || lowercase_wallet_address)`, with wallet address as tie break. The first `seats` win. This final action is one-time. An unreviewed application has pending status and does not win.
@@ -50,4 +50,4 @@ A single wallet is not a unique person; Sybil wallets can increase lottery odds.
 - [Reproducible verification](docs/verification.md)
 - [Official GenLayer references](docs/references.md)
 
-The default Python tests are deterministic boundary tests with a minimal GenLayer runtime stand-in (the native smoke test is skipped unless `GENLAYER_DIRECT=1`). They are **not** proof of GenVM deployment or multi-validator consensus. A verified Studio end-to-end trace is separately required and recorded in `docs/verification.md` when available.
+The default Python tests are deterministic boundary tests with a minimal GenLayer runtime stand-in (the native smoke test is skipped unless `GENLAYER_DIRECT=1`). They are **not** proof of GenVM deployment or multi-validator consensus. A live Studio trace is recorded in `docs/verification.md`; review and draw depend on the committed future times.

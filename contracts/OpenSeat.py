@@ -42,7 +42,7 @@ class OpenSeat(gl.Contract):
         self.review_end = review_end
         self.seats = seats
         self.applicants = []
-        self.records = {}
+        self.records = TreeMap()
         self.history = []
         self.finalized = False
         self.seed = ''
@@ -101,7 +101,8 @@ class OpenSeat(gl.Contract):
         return gl.vm.run_nondet_unsafe(evaluate, validate)
 
     @gl.public.write
-    def review(self, wallet: Address):
+    def review(self, wallet: str):
+        wallet = Address(wallet)
         assert int(time.time()) >= int(self.deadline) and int(time.time()) < int(self.review_end), 'Outside review window'
         record = self._record(wallet)
         assert record and record['reviews'] == 0, 'Not pending'
@@ -112,7 +113,8 @@ class OpenSeat(gl.Contract):
         self._append(wallet, 'review', verdict, record['sha256'])
 
     @gl.public.write
-    def challenge(self, wallet: Address):
+    def challenge(self, wallet: str):
+        wallet = Address(wallet)
         now = int(time.time())
         assert int(self.deadline) <= now < int(self.review_end), 'Outside review window'
         record = self._record(wallet)

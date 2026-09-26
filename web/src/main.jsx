@@ -61,7 +61,7 @@ function App() {
   const mine = applicants.find(a => a.wallet.toLowerCase() === wallet.toLowerCase());
   const available = config ? Math.max(0, config.seats - winners.length) : 0;
   return <div className="shell">
-    <header><div className="brand"><span className="mark">O<span>✦</span></span><span>OpenSeat</span></div><div className="header-right"><span className="network">◉ Studio devnet</span><button className="wallet" onClick={connect}>{wallet ? shorten(wallet) : 'Connect wallet ↗'}</button></div></header>
+    <header><div className="brand"><span className="mark">O<span>✦</span></span><span>OpenSeat</span></div><div className="header-right"><span className="network">◉ Studionet</span><button className="wallet" onClick={connect}>{wallet ? shorten(wallet) : 'Connect wallet ↗'}</button></div></header>
     <main>
       <section className="mast"><div><div className="eyebrow">THE COHORT DESK <span className="rule"/> EVIDENCE-LED ALLOCATION</div><h1>Fair places.<br/><em>Verified work.</em></h1><p>One application per wallet. Public work checked by GenLayer validators. A fixed future beacon draws seats after review closes.</p></div><div className="mast-aside"><span className="aside-label">CURRENT ROUND</span><strong>{config?.title || 'No live round connected'}</strong><span className="stage">{stage}</span>{ADDRESS && <small>Contract <a href={`${EXPLORER}/address/${ADDRESS}`} target="_blank" rel="noreferrer">{shorten(ADDRESS)} ↗</a></small>}</div></section>
       {!ADDRESS && <div className="notice"><b>Deployment pending</b><span>The site is ready for a contract address. No applications, outcomes, or live data are being shown.</span></div>}
