@@ -1,6 +1,9 @@
 """Native GenLayer Direct Mode smoke test (requires GenVM runtime dependencies)."""
 import time
+import os
 import pytest
+
+pytestmark = pytest.mark.skipif(os.getenv("GENLAYER_DIRECT") != "1", reason="native GenVM runtime gate: set GENLAYER_DIRECT=1 when runtime artifacts are available")
 
 def test_constructor_and_permissions(direct_deploy, direct_vm, direct_alice):
     now = int(time.time())

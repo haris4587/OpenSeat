@@ -7,7 +7,7 @@ An evidence-led, capacity-limited cohort allocation contract and public app for 
 - Contract: `contracts/OpenSeat.py`
 - Network target: Studio development preview, chain ID **61997** (GenLayerJS `2.0.0-rc.1`). This is a temporary test environment.
 - Contract address: **pending verified deployment**. The app deliberately shows no live data until `VITE_CONTRACT_ADDRESS` is set.
-- Source revision, transaction IDs, explorer reads and site URL: recorded only after verified deployment/publication in `docs/verification.md`.
+- Public website: https://openseat-haris4587.itzanza2.chatgpt.site (published, contract connection pending). Source revisions and pending network evidence are in `docs/verification.md`.
 
 ## Run
 
@@ -50,4 +50,4 @@ A single wallet is not a unique person; Sybil wallets can increase lottery odds.
 - [Reproducible verification](docs/verification.md)
 - [Official GenLayer references](docs/references.md)
 
-The Python tests are deterministic boundary tests with a minimal GenLayer runtime stand-in. They are **not** proof of GenVM deployment or multi-validator consensus. A verified Studio end-to-end trace is separately required and recorded in `docs/verification.md` when available.
+The default Python tests are deterministic boundary tests with a minimal GenLayer runtime stand-in (the native smoke test is skipped unless `GENLAYER_DIRECT=1`). They are **not** proof of GenVM deployment or multi-validator consensus. A verified Studio end-to-end trace is separately required and recorded in `docs/verification.md` when available.
