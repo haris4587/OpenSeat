@@ -1,0 +1,12 @@
+"""Native GenLayer Direct Mode smoke test (requires GenVM runtime dependencies)."""
+import time
+import pytest
+
+def test_constructor_and_permissions(direct_deploy, direct_vm, direct_alice):
+    now = int(time.time())
+    c = direct_deploy('contracts/OpenSeat.py', 'Builders', 'Show an open-source contribution', now + 3600, now + 7200, 2)
+    config = c.get_config()
+    assert 'Builders' in config
+    with direct_vm.prank(direct_alice):
+        with pytest.raises(Exception):
+            c.apply('https://raw.githubusercontent.com/a/b/main/file.md', '0'*64)

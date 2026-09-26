@@ -1,0 +1,15 @@
+# Official references checked 2026-09-26
+
+- [Python contract structure and runtime pin](https://docs.genlayer.com/developers/intelligent-contracts/first-contract)
+- [Storage fields / DynArray and TreeMap](https://docs.genlayer.com/developers/intelligent-contracts/storage)
+- [Transaction timestamps](https://docs.genlayer.com/developers/intelligent-contracts/features/transaction-context)
+- [Web access / non-deterministic blocks](https://docs.genlayer.com/developers/intelligent-contracts/features/web-access)
+- [Independent equivalence validation](https://docs.genlayer.com/developers/intelligent-contracts/equivalence-principle)
+- [GenLayerJS and browser wallet](https://docs.genlayer.com/api-references/genlayer-js)
+- [Finalized reads](https://docs.genlayer.com/developers/decentralized-applications/reading-data)
+- [Fees and write finalization](https://docs.genlayer.com/developers/decentralized-applications/writing-data)
+- [Networks and explorer](https://docs.genlayer.com/developers/networks)
+- [Studio deployment](https://docs.genlayer.com/developers/intelligent-contracts/tools/genlayer-studio/deploying-contract)
+- [Consensus v0.6 matching release family](https://docs.genlayer.com/developers/consensus-v06-migration)
+- [drand default beacon chain metadata](https://docs.drand.love/developer/API-v1/chain-hash-info/)
+- [drand round API](https://docs.drand.love/developer/API-v1/chain-hash-public-round/)
