@@ -6,8 +6,8 @@ An evidence-led, capacity-limited cohort allocation contract and public app for 
 
 - Contract: `contracts/OpenSeat.py`
 - Network target: Studionet, chain ID **61999** (GenLayerJS `1.1.8`).
-- Contract address: [`0xf70eAf992565Aa334526E82Da06f6d99E4Ca3366`](https://explorer-studio.genlayer.com/address/0xf70eAf992565Aa334526E82Da06f6d99E4Ca3366); finalized `get_config` verified; new application transaction submitted.
-- Public website: https://openseat-haris4587.itzanza2.chatgpt.site (publishing corrected contract address). Source revisions and pending network evidence are in `docs/verification.md`.
+- Contract address: [`0x91adfBe7648f8C478140b9Cd6bB110139712BF04`](https://explorer-studio.genlayer.com/address/0x91adfBe7648f8C478140b9Cd6bB110139712BF04); finalized `get_config` and one application verified.
+- Public website: https://openseat-haris4587.itzanza2.chatgpt.site (published against final pilot; one finalized application). Source revisions and pending network evidence are in `docs/verification.md`.
 
 ## Run
 

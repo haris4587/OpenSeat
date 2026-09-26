@@ -45,7 +45,7 @@ class Runtime:
     def get(self, url):
         self.web_calls += 1
         status, body = self.pages.get(url, (404, b''))
-        return types.SimpleNamespace(status_code=status, body=body)
+        return types.SimpleNamespace(status=status, body=body)
 
     def prompt(self, prompt, response_format='json'):
         return self.prompt_response
@@ -164,3 +164,12 @@ def test_invalid_pinned_url_and_nonmutable_rules(rt):
     with pytest.raises(AssertionError, match='pinned'):
         rt.contract.apply('https://raw.githubusercontent.com/alice/repo/main/a.md', '0'*64)
     assert rt.contract.rules_sha256 == hashlib.sha256(rt.contract.rules.encode()).hexdigest()
+
+
+def test_review_cannot_run_before_application_deadline(rt):
+    wallet, _ = rt.apply('2')
+    rt.as_('0x' + '9' * 40)
+    with pytest.raises(AssertionError, match='Outside review window'):
+        rt.contract.review(wallet)
+    assert rt.contract._record(wallet)['reviews'] == 0
+    assert len(rt.contract.history) == 1

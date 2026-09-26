@@ -77,7 +77,7 @@ class OpenSeat(gl.Contract):
         def evaluate():
             try:
                 response = gl.nondet.web.get(url)
-                if response.status_code != 200 or len(response.body) > MAX_EVIDENCE:
+                if response.status != 200 or len(response.body) > MAX_EVIDENCE:
                     return 'unavailable'
                 body = response.body
                 if hashlib.sha256(body).hexdigest() != digest:
@@ -140,7 +140,7 @@ class OpenSeat(gl.Contract):
         url = 'https://drand.cloudflare.com/' + CHAIN + '/public/' + str(round_number)
         def fetch_seed():
             response = gl.nondet.web.get(url)
-            if response.status_code != 200 or len(response.body) > 2048:
+            if response.status != 200 or len(response.body) > 2048:
                 raise gl.UserError('Beacon unavailable')
             data = json.loads(response.body.decode('utf-8'))
             signature = data.get('signature', '')

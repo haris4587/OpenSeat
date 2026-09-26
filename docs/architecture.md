@@ -1,6 +1,6 @@
 # Architecture and threat model
 
-The frontend connects an EIP-1193 wallet to the SDK's `studioDevnet` chain definition. Four `LATEST_FINAL` views are the only source of displayed round data. Writes estimate network fees, submit to the deployed Intelligent Contract, await finalization and check execution success. `VITE_CONTRACT_ADDRESS` binds the build to a deployment.
+The frontend connects an EIP-1193 wallet to the SDK's `studionet` chain definition. Four `LATEST_FINAL` views are the only source of displayed round data. Writes submit zero-value transactions to the deployed Intelligent Contract, await finalization, and check execution success. The tracked `.env.production` binds the production build to the verified deployment; `VITE_CONTRACT_ADDRESS` overrides it for other builds.
 
 The organizer makes one immutable round in the constructor. `apply` is a deterministic commitment, never an eligibility decision. `review` and `challenge` independently fetch the pinned evidence URL in every validator and compare its bytes to the applicant's SHA-256. Only then does the LLM interpret evidence under the committed rules. Input instructions are isolated as data. Responses are reduced to four status values for semantic consensus and append-only history. Changed evidence is not silently substituted. The public URL form allows only raw GitHub content at a full 40-hex commit. It excludes dynamic branch URLs, redirects to caller-controlled hosts (web runtime redirect policy remains a deployment check), arbitrary user URLs, and 16 KiB+ bodies.
 
