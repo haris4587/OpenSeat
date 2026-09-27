@@ -6,8 +6,8 @@ An evidence-led, capacity-limited cohort allocation contract and public app for 
 
 - Contract: `contracts/OpenSeat.py`
 - Network target: Studionet, chain ID **61999** (GenLayerJS `1.1.8`).
-- Contract address: [`0x56bEDc6836B2d8809ca9134b2d66b5CBab291ae1`](https://explorer-studio.genlayer.com/address/0x56bEDc6836B2d8809ca9134b2d66b5CBab291ae1); finalized `get_config` and one application verified.
-- Public website: https://openseat-haris4587.itzanza2.chatgpt.site (published against the source-linked pilot; one finalized application). Source revisions and pending network evidence are in `docs/verification.md`.
+- Contract address: [`0x56bEDc6836B2d8809ca9134b2d66b5CBab291ae1`](https://explorer-studio.genlayer.com/address/0x56bEDc6836B2d8809ca9134b2d66b5CBab291ae1); one application, its [eligible review](https://explorer-studio.genlayer.com/tx/0x155e8f2368f2262b03bc6051104645841835383246612178a2bf2ba6d850807f), and the [final seat draw](https://explorer-studio.genlayer.com/tx/0x2e5abf29aad833f31102a2d6a748a64897d2581a034814f8b8659db092db6a4f) finalized successfully. Winner: `0x4F125FBBcAfC171f3B9341aa16A6b1A70b00848e`.
+- Public website: https://openseat-haris4587.itzanza2.chatgpt.site (published against the source-linked pilot; live finalized reads show one eligible application and one allocated seat). Source revisions and network evidence are in `docs/verification.md`.
 
 ## Run
 
@@ -50,4 +50,4 @@ A single wallet is not a unique person; Sybil wallets can increase lottery odds.
 - [Reproducible verification](docs/verification.md)
 - [Official GenLayer references](docs/references.md)
 
-The default Python tests are deterministic boundary tests with a minimal GenLayer runtime stand-in (the native smoke test is skipped unless `GENLAYER_DIRECT=1`). They are **not** proof of GenVM deployment or multi-validator consensus. A live Studio trace is recorded in `docs/verification.md`; review and draw depend on the committed future times.
+The default Python tests are deterministic boundary tests with a minimal GenLayer runtime stand-in (the native smoke test is skipped unless `GENLAYER_DIRECT=1`). They are **not** proof of GenVM deployment or multi-validator consensus. The completed live Studio trace, including review and draw receipts, is recorded in `docs/verification.md`.
